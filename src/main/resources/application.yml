@@ -8,7 +8,7 @@ spring:
         - id: airline-api-route
           uri: ${AIRLINE_API_URL:https://2ckp9swrez.us-east-1.awsapprunner.com}
           predicates:
-            - Path=/api/v1/**
+            - Path=/v1/**
           filters:
             - name: RequestRateLimiter
               args:
