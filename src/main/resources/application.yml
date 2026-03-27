@@ -9,9 +9,4 @@ spring:
           uri: ${AIRLINE_API_URL:https://2ckp9swrez.us-east-1.awsapprunner.com}
           predicates:
             - Path=/v1/**
-          filters:
-            - name: RequestRateLimiter
-              args:
-                redis-rate-limiter.replenishRate: 1
-                redis-rate-limiter.burstCapacity: 3
-                key-resolver: "#{@userKeyResolver}"
+         
