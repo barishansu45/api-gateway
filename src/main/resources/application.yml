@@ -8,5 +8,4 @@ spring:
         - id: airline-api-route
           uri: https://2ckp9swrez.us-east-1.awsapprunner.com
           predicates:
-            - Path=/v1/**
-         
+            - Path=/**
