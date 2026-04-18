@@ -1,17 +1,42 @@
 server:
-  port: 9000
+  port: 8081
 
 spring:
   cloud:
     gateway:
       routes:
-        - id: airline-api-route
-          uri: ${AIRLINE_API_URL:http://localhost:8080}
+        - id: query_flight_route
+          # uri: https://airline-api-project-e0h2dwbpgyh3h3d8.germanywestcentral-01.azurewebsites.net
+          uri: http://localhost:8080
           predicates:
-            - Path=/api/v1/**
-          filters:
-            - name: RequestRateLimiter
-              args:
-                redis-rate-limiter.replenishRate: 1
-                redis-rate-limiter.burstCapacity: 3
-                key-resolver: "#{@userKeyResolver}"
+            - Path=/api/v1/flights/query/**
+
+        - id: buy_ticket_route
+          # uri: https://airline-api-project-e0h2dwbpgyh3h3d8.germanywestcentral-01.azurewebsites.net
+          uri: http://localhost:8080
+          predicates:
+            - Path=/api/v1/flights/buy-ticket/**
+
+        - id: add_flight_route
+          # uri: https://airline-api-project-e0h2dwbpgyh3h3d8.germanywestcentral-01.azurewebsites.net
+          uri: http://localhost:8080
+          predicates:
+            - Path=/api/v1/flights/add/**
+
+        - id: add_flight_by_file_route
+          # uri: https://airline-api-project-e0h2dwbpgyh3h3d8.germanywestcentral-01.azurewebsites.net
+          uri: http://localhost:8080
+          predicates:
+            - Path=/api/v1/flights/add-by-file/**
+
+        - id: check_in_route
+          # uri: https://airline-api-project-e0h2dwbpgyh3h3d8.germanywestcentral-01.azurewebsites.net
+          uri: http://localhost:8080
+          predicates:
+            - Path=/api/v1/flights/check-in/**
+
+        - id: passenger_list_route
+          # uri: https://airline-api-project-e0h2dwbpgyh3h3d8.germanywestcentral-01.azurewebsites.net
+          uri: http://localhost:8080
+          predicates:
+            - Path=/api/v1/flights/*/passengers/**
